@@ -1,0 +1,14 @@
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.deps.json
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.pdb
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.Models.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.ViewModels.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.ViewModels.pdb
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\bin\Debug\netcoreapp2.2\PenTrade.Models.pdb
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.csprojAssemblyReference.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.csproj.CoreCompileInputs.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.AssemblyInfoInputs.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.AssemblyInfo.cs
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.csproj.CopyComplete
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Repositories.Interfaces\obj\Debug\netcoreapp2.2\PenTrade.Repositories.Interfaces.pdb

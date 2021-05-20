@@ -1,0 +1,64 @@
+﻿@model PenTrade.Models.Company
+
+
+<h1>@Model.Name</h1>
+
+<h6>Representatives:</h6>
+@foreach (var representative in Model.Representatives)
+{
+
+    @representative.FirstName
+    @:&nbsp;
+    @representative.LastName @:&nbsp;
+    @representative.PhoneNumber @:&nbsp;
+    @representative.Email<br />
+}
+<br />
+
+<h6> Company adress: @Model.Adress </h6><br />
+
+
+Merchandises for sale:
+<table class="table table-striped" width="50%">
+    <thead>
+        <tr>
+            <th>Merchandise</th>
+            <th>Unit of sale</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var merch in Model.CurrentStock)
+        {
+            <tr>
+                <td>@merch.Merchandise.Name </td>
+                <td>@Enum.GetName(typeof(PenTrade.Models.MeasurmentUnit), merch.Merchandise.MesaurmentUnit)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+@if (User.Claims.SingleOrDefault(claim => claim.Type.Equals("CompanyId")) != null && User.Claims.SingleOrDefault(claim => claim.Type.Equals("CompanyId")).Value.Equals(Model.Id.ToString()))
+{
+
+    <table>
+        @foreach (var negotiation in Model.Negotiations)
+        {
+            <tr>
+                <td>
+                    @negotiation.OtherCompanyName
+                </td>
+                <td>
+                    @negotiation.LastMessageAt
+                </td>
+                <td>
+                    <a asp-controller="Negotiation" asp-action="Details" asp-route-companyId="@negotiation.OtherCompanyId">See conversation</a>
+                </td>
+            </tr>
+        }
+    </table>
+
+    <a asp-action="Edit" asp-route-companyId="@Model.Id">Edit</a>
+
+}

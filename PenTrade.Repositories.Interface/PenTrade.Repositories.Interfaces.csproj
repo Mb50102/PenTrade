@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <BaseDirectory>..\PenTrade.Repositories.Interfaces</BaseDirectory>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PenTrade.ViewModels\PenTrade.ViewModels.csproj" />
+    <ProjectReference Include="..\PenTrade.Models\PenTrade.Models.csproj" />
+  </ItemGroup>
+</Project>

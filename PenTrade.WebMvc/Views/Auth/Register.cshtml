@@ -1,0 +1,17 @@
+﻿@using PenTrade.ViewModels
+@model RegisterModel
+
+<form asp-controller="Auth" asp-action="Register" method="post">
+    @Html.ValidationSummary()
+    @Html.LabelFor(model => model.FirstName)
+    @Html.EditorFor(model => model.FirstName)<br />
+    @Html.LabelFor(model => model.LastName)
+    @Html.EditorFor(model => model.LastName)<br />
+    @Html.LabelFor(model => model.PhoneNumber)
+    @Html.EditorFor(model => model.PhoneNumber)<br />
+    @Html.LabelFor(model => model.Email)
+    @Html.EditorFor(model => model.Email)<br />
+    @Html.LabelFor(model => model.Password)
+    @Html.EditorFor(model => model.Password, "password")<br />
+    <button type="submit">Register</button>
+</form>

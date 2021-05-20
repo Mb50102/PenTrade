@@ -1,0 +1,62 @@
+﻿@using PenTrade.ViewModels
+
+@model List<CompanyListView>
+
+<h1>Find companies</h1>
+
+<h3>Filter by:</h3>
+
+<form asp-action="Find" method="post">
+
+    Company name: @Html.TextBox("CompanyName") &nbsp;
+    Product name: @Html.TextBox("Product")
+
+<button type="submit">Submit</button>
+
+</form>
+
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Representatives</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var company in Model)
+        {
+            <tr>
+                <td>
+                    <a asp-action="Details" asp-route-companyId="@company.CompanyId">@company.CompanyName</a>
+                </td>
+                <td>
+                    <ul>
+                        @foreach(var representative in company.Representatives)
+                        { 
+                            <li>@representative.FirstName @representative.LastName</li>
+                        }
+                    </ul>
+                    
+
+
+
+                    @if(company.HasNegotiation)
+                    {
+                        <a asp-controller="Negotiation" asp-action="Details" asp-route-companyId="@company.CompanyId">See Negotiation</a>
+                    }
+                    else
+                    {
+                        @if(User.Claims.SingleOrDefault(claim => claim.Type.Equals("CompanyId")) != null)
+                        {
+                            <a asp-controller="Negotiation" asp-action="InitiateNegotiation" asp-route-companyId="@company.CompanyId">Negotiate</a>
+                        }
+
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

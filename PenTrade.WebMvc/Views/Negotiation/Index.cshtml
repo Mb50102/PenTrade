@@ -1,0 +1,10 @@
+﻿@model IEnumerable<PenTrade.Models.NegotiationViewModel>
+
+@foreach(var negotiation in Model)
+{
+    @negotiation.OtherCompanyName @negotiation.LastMessageAt 
+    <a asp-action="Details" asp-route-companyId="@negotiation.OtherCompanyId">View conversation</a>
+
+    <br />
+    <br />
+}

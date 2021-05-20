@@ -1,0 +1,12 @@
+﻿@model PenTrade.Models.Company
+
+
+<form asp-action="Create" method="post">
+    @Html.LabelFor(model =>  model.Adress)
+    @Html.EditorFor(model => model.Adress)<br />
+    @Html.LabelFor(model => model.Name)
+    @Html.EditorFor(model => model.Name)<br />
+
+    
+    <button type="submit">Create</button>
+</form>

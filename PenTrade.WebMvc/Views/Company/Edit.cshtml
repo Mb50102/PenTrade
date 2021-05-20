@@ -1,0 +1,66 @@
+﻿@model PenTrade.Models.Company
+@using System.Security.Claims
+
+@functions 
+{
+    public IEnumerable<SelectListItem> GetSelectList()
+    {
+        var collection = new List<SelectListItem>();
+        foreach(var enumVal in Html.GetEnumSelectList(typeof(PenTrade.Models.MeasurmentUnit)))
+        {
+            collection.Add(new SelectListItem(enumVal.Text, enumVal.Value));
+        }
+
+        return collection;
+    }
+}
+
+<form asp-action="EditData" method="post">
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.CurrentStock)
+    @Html.HiddenFor(model => model.Negotiations)
+    @Html.HiddenFor(model => model.Representatives)
+    Address: @Html.TextBoxFor(model => model.Adress) <br />
+    Company name: @Html.TextBoxFor(model => model.Name) <br />
+    <input type="submit" value="Edit" />
+</form>
+
+<h2>Other representatives</h2>
+<table>
+    <tr>
+        @foreach (var representative in Model.Representatives.Where(r => !r.Email.Equals(User.Claims.SingleOrDefault(claim => claim.Type.Equals(ClaimTypes.Email)).Value)).ToList())
+        {
+            <td>@representative.Id</td>
+            <td>@representative.FirstName @representative.LastName @representative.Email</td>
+            <td>@representative.PhoneNumber</td>
+            <td><a asp-action="RemoveRepresentative" asp-route-employeeId="@representative.Id" asp-route-companyId="@Model.Id">Delete</a></td>
+        }
+    </tr>
+</table>
+
+<table class="table table-striped">
+
+        @foreach (var merch in Model.CurrentStock)
+        {
+            <tr>
+                <td>@merch.Merchandise.Name</td>
+                <td>@merch.Merchandise.MesaurmentUnit</td>
+                <td><a asp-action="DeleteMerchandise" asp-route-currentStockId="@merch.Id" asp-route-companyId="@Model.Id">Remove merchandise</a></td>
+            </tr>
+        }
+
+</table>
+
+<form asp-action="AddRepresentative" method="post">
+    New representative id: @Html.TextBox("RepresentativeId")
+    @Html.Hidden("CompanyId", Model.Id)
+    <input type="submit" value="Add employee">
+</form>
+
+
+<form asp-action="AddMerchandise" method="post">
+    @Html.Hidden("CompanyId", Model.Id)
+    Merchandise name:@Html.TextBox("MerchandiseName") <br />
+    Unit of sale: @Html.DropDownList("Unit", GetSelectList())
+    <input type="submit"  value="Add new merchandise"/>
+</form>

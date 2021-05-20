@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@using PenTrade.Models
+@model List<Merchandise>
+
+@foreach(var merchandise in Model)
+{
+    @merchandise.Id<br />
+    @merchandise.Name<br />
+    <br /><br />
+
+}

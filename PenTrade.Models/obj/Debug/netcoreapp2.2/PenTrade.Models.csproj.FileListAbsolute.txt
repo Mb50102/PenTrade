@@ -1,0 +1,11 @@
+D:\Clueless\pentrade\pentrade\PenTrade.Models\bin\Debug\netcoreapp2.2\PenTrade.Models.deps.json
+D:\Clueless\pentrade\pentrade\PenTrade.Models\bin\Debug\netcoreapp2.2\PenTrade.Models.runtimeconfig.json
+D:\Clueless\pentrade\pentrade\PenTrade.Models\bin\Debug\netcoreapp2.2\PenTrade.Models.runtimeconfig.dev.json
+D:\Clueless\pentrade\pentrade\PenTrade.Models\bin\Debug\netcoreapp2.2\PenTrade.Models.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Models\bin\Debug\netcoreapp2.2\PenTrade.Models.pdb
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.csprojAssemblyReference.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.csproj.CoreCompileInputs.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.AssemblyInfoInputs.cache
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.AssemblyInfo.cs
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.dll
+D:\Clueless\pentrade\pentrade\PenTrade.Models\obj\Debug\netcoreapp2.2\PenTrade.Models.pdb

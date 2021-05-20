@@ -1,0 +1,12 @@
+﻿@model PenTrade.Models.Company
+
+@foreach (var representative in Model.Representatives)
+{
+
+    @representative.FirstName
+    @:&nbsp;
+    @representative.LastName @:&nbsp;
+    @representative.PhoneNumber @:&nbsp;
+    @representative.Email<br />
+}
+<br />

@@ -1,0 +1,220 @@
+﻿@{
+    var thisCompany = (int.Parse(User.Claims.SingleOrDefault(claim => claim.Type.Equals("CompanyId")).Value) == Model.Company1Id) ?
+        Model.Company1 : Model.Company2;
+    var otherCompany = (int.Parse(User.Claims.SingleOrDefault(claim => claim.Type.Equals("CompanyId")).Value) == Model.Company1Id) ?
+        Model.Company2 : Model.Company1;
+}
+
+@functions {
+    public string GetClassName(bool? isAccepted)
+    {
+        if(isAccepted != null)
+        {
+            if((bool)isAccepted)
+            {
+                return "table-success";
+            }
+            return "table-danger";
+        }
+
+        return "";
+    }
+
+    public string GetBuyString(bool isOfferToBuy)
+    {
+        if (isOfferToBuy)
+            return "Buying";
+        return "Selling";
+    }
+}
+@using PenTrade.Models
+@model PenTrade.Models.Negotiation
+Chat with:
+
+@otherCompany.Name
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h1>Messages:</h1>
+            <table id="messagesList">
+                <colgroup>
+                    <col style="width:20%" />
+                    <col style="width:30%" />
+                    <col style="width:30%" />
+                    <col style="width:20%" />
+                </colgroup>
+                <tbody>
+                    @foreach (var message in Model.Messages)
+                    {
+                        <tr>
+                            @if (message.ReceiverId == thisCompany.Id)
+                            {
+                                <td>
+                                    @message.Sender.Name <br />
+                                    @message.TimeSent.ToLocalTime().ToLongDateString() <br />
+                                    @message.TimeSent.ToLocalTime().ToLongTimeString()
+                                </td>
+                                <td class="table-primary">
+                                    @message.Content
+                                </td>
+                            }
+                            else
+                            {
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            }
+
+
+                            @if (message.SenderId == thisCompany.Id)
+                            {
+                                <td class="table-active">
+                                    @message.Content
+                                </td>
+                                <td class="text-right">
+                                    @message.Sender.Name <br />
+                                    @message.TimeSent.ToLocalTime().ToLongDateString() <br />
+                                    @message.TimeSent.ToLocalTime().ToLongTimeString()
+                                </td>
+                            }
+                            else
+                            {
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            }
+
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            Insert message...<textarea id="messageInput"></textarea>
+            <input type="text" id="thisCompanyId" value="@thisCompany.Id" readonly style="visibility:hidden;" />
+            <input type="text" id="thisCompanyName" value="@thisCompany.Name" readonly style="visibility:hidden;" />
+
+            <input type="text" id="otherCompanyId" value="@otherCompany.Id" readonly style="visibility:hidden;" />
+            <input type="text" id="otherCompanyName" value="@otherCompany.Name" readonly style="visibility:hidden;" />
+
+            <input type="button" class="btn btn-primary" id="sendButton" value="Send Message" />
+        </div>
+        <div class="col-6">&nbsp;</div>
+
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <hr />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <h1>Offers:</h1>
+            <table id="offersList">
+                <colgroup>
+                    <col style="width:20%" />
+                    <col style="width:30%" />
+                    <col style="width:30%" />
+                    <col style="width:20%" />
+                </colgroup>
+                <tbody>
+                    @foreach (var offer in Model.Offers)
+                    {
+                        <tr>
+                            @if (offer.ReceiverId == thisCompany.Id)
+                            {
+                                <td>
+                                    @offer.Sender.Name<br />
+                                    @offer.TimeSent.ToLocalTime().ToLongDateString() <br />
+                                    @offer.TimeSent.ToLocalTime().ToLongTimeString() <br />
+                                </td>
+                                <td id="@offer.Id" class="@GetClassName(offer.IsAccepted)">
+                                    @GetBuyString(offer.IsOfferToBuy) <br />
+                                    Offer for: @offer.Merchandise.Name <br />
+                                    How many: @offer.Amount @Enum.GetName(typeof(PenTrade.Models.MeasurmentUnit), offer.Merchandise.MesaurmentUnit)<br />
+                                    How much per unit: @offer.PricePerUnit <br />
+                                    Total price: @(offer.Amount * offer.PricePerUnit) <br />
+                                    @if (offer.IsAccepted == null)
+                                    {
+                                        <input type="button" class="btn btn-success" id="acceptOfferButton" value="Accept Offer" onclick="acceptOffer(event)"/>
+                                        <input type="button" class="btn btn-danger" id="declineOfferButton" value="Decline Offer" onclick="declineOffer(event)"/>
+                                    }
+
+                                </td>
+                            }
+                            else
+                            {
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            }
+
+                            @if (offer.SenderId == thisCompany.Id)
+                            {
+                                <td id="@offer.Id" class="@GetClassName(offer.IsAccepted)">
+                                    @GetBuyString(offer.IsOfferToBuy) <br />
+                                    Offer for: @offer.Merchandise.Name <br />
+                                    How many: @offer.Amount @Enum.GetName(typeof(PenTrade.Models.MeasurmentUnit), offer.Merchandise.MesaurmentUnit)<br />
+                                    How much per unit: @offer.PricePerUnit <br />
+                                    Total price: @(offer.Amount * offer.PricePerUnit) <br />
+                                </td>
+                                <td>
+                                    @offer.Sender.Name<br />
+                                    @offer.TimeSent.ToLocalTime().ToLongDateString() <br />
+                                    @offer.TimeSent.ToLocalTime().ToLongTimeString() <br />
+                                </td>
+                            }
+                            else
+                            {
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <hr />
+            </div>
+        </div>
+        <form>
+            I wish to: <br />
+            <input type="radio" name="purchaseOrSell" id="Sell" checked onclick="changeSelectList()"/>Sell <br />
+            <input type="radio" name="purchaseOrSell" id="Buy" onclick="changeSelectList()"/>Buy <br />
+
+
+            Offer for: 
+            <select id="thisCompanyMerchandise">
+                @foreach(var currentStock in thisCompany.CurrentStock)
+                {
+                    <option value="@currentStock.Merchandise.Id">@currentStock.Merchandise.Name (@Enum.GetName(typeof(PenTrade.Models.MeasurmentUnit), currentStock.Merchandise.MesaurmentUnit))</option>
+                }
+
+            </select> 
+            <select id="otherCompanyMerchandise" style="display:none">
+                @foreach(var currentStock in otherCompany.CurrentStock)
+                {
+                    <option value="@currentStock.Merchandise.Id">@currentStock.Merchandise.Name (@Enum.GetName(typeof(PenTrade.Models.MeasurmentUnit), currentStock.Merchandise.MesaurmentUnit))</option>
+                }
+            </select>
+            How much:<input type="number" id="amount" onkeyup="updateTotalPrice(event)" /> <br />
+            For which price per unit:<input type="number" id="pricePerUnit" onkeyup="updateTotalPrice(event)" />
+            <span id="totalPrice"></span>
+
+            <input type="button" id="sendOfferButton" value="Sell"/>
+        </form>
+    </div>
+
+</div>
+<script src="~/lib/signalr/dist/browser/signalr.js"></script>
+<script src="~/js/chat.js"></script>

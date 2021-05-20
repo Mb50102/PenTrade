@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.1" />
+    <PackageReference Include="Microsoft.Owin" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PenTrade.Models\PenTrade.Models.csproj" />
+    <ProjectReference Include="..\PenTrade.Repositories.Interfaces\PenTrade.Repositories.Interfaces.csproj" />
+    <ProjectReference Include="..\PenTrade.Repositories\PenTrade.Repositories.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="CRUDRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Auth\" />
+    <Folder Include="Views\Company\" />
+    <Folder Include="Views\Negotiation\" />
+    <Folder Include="ChatHub\" />
+  </ItemGroup>
+</Project>
